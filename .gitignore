@@ -1,6 +1,7 @@
 assets/*
 data/*
 models/*
+.ipynb_checkpoints
 
 rough_notes.txt
 
