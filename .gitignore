@@ -2,6 +2,7 @@ assets/*
 data/*
 models/*
 .ipynb_checkpoints
+__pycache__
 
 rough_notes.txt
 
