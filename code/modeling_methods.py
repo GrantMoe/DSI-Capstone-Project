@@ -30,7 +30,7 @@ def run_model(model, X_train, y_train, X_test, y_test, batch_size, epochs, early
 
 
 
-def save_model(model_director, model, results, batch_size, scaler_file):
+def save_model(model_directory, model, results, batch_size, dual_outputs, scaler_file):
     model_history_file = '../models/model_history.csv'
     ## Make sure model history exists
     if not exists(model_history_file):
@@ -78,7 +78,7 @@ def save_model(model_director, model, results, batch_size, scaler_file):
     return model_path
     
     
-def plot_metrics(history, batch_size):
+def plot_metrics(history, batch_size, dual_outputs):
     fig, ax = plt.subplots(1, 3, figsize=(20,5))
     fig.suptitle(f'Metrics for Batch Size {batch_size}', size=15)
     ax[0].set_title('Loss (MSE)', size=13)
