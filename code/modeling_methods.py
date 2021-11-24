@@ -11,6 +11,8 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
 
+# Straightforward helper model, called in a loop.
+# Returns the fit model and history to be saved (and plotted)
 def run_model(model, X_train, y_train, X_test, y_test, batch_size, epochs, early_stop_patience=5, verbose=0):
     if early_stop_patience:
         stop_early = EarlyStopping(patience=early_stop_patience)
@@ -29,13 +31,15 @@ def run_model(model, X_train, y_train, X_test, y_test, batch_size, epochs, early
     return model, results
 
 
-
+# Records model result metrics and supplied hyperparameters
+# Loads, adds to, then saves the shared model history CSV
+# Returns the path to where the model is saved.
+# Called in a modeling loop
 def save_model(model_directory, model, results, batch_size, dual_outputs, scaler_file):
     model_history_file = '../models/model_history.csv'
     ## Make sure model history exists
     if not exists(model_history_file):
         model_history = pd.DataFrame(columns=['model', 'history', 'batch_size', 
-                                              # 'r2_score', 'mae_score',
                                               'mse_score', 'rmse_score'])
     else:
         model_history = pd.read_csv(model_history_file, index_col=0)
@@ -77,7 +81,13 @@ def save_model(model_directory, model, results, batch_size, dual_outputs, scaler
     model_history.to_csv(model_history_file)
     return model_path
     
-    
+
+# This is a helper function called to plot each model in a traiing loop
+# Plotted values:
+# - Mean Squared Error (MSE) <- This is the loss function used for fitting
+# - Mean Absolute Error (MAE)
+# - Root Mean Squared Error (RMSE)
+# Each model within the loop will have a different batch size
 def plot_metrics(history, batch_size, dual_outputs):
     fig, ax = plt.subplots(1, 3, figsize=(20,5))
     fig.suptitle(f'Metrics for Batch Size {batch_size}', size=15)
@@ -88,7 +98,6 @@ def plot_metrics(history, batch_size, dual_outputs):
         ax[0].plot(history['val_steering_outputs_loss'], label = 'Val Str MSE')
         ax[0].plot(history['val_throttle_outputs_loss'], label = 'Val Thr MSE')
     ax[0].legend()
-    
     ax[1].set_title('RMSE', size=13)
     if dual_outputs:
         ax[1].plot(history['val_steering_outputs_root_mean_squared_error'], label = 'Val Str RMSE')
@@ -97,7 +106,6 @@ def plot_metrics(history, batch_size, dual_outputs):
         ax[1].plot(history['root_mean_squared_error'], label = 'RMSE')
         ax[1].plot(history['val_root_mean_squared_error'], label = 'Val RMSE')
     ax[1].legend()
-    
     ax[2].set_title('MAE', size=13)
     if dual_outputs:
         ax[2].plot(history['val_steering_outputs_mae'], label = 'Val Str MAE')
@@ -106,13 +114,24 @@ def plot_metrics(history, batch_size, dual_outputs):
         ax[2].plot(history['mae'], label = 'MAE')
         ax[2].plot(history['val_mae'], label = 'Val MAE')
     ax[2].legend()
-    
     plt.tight_layout();
     
-    
-    
-# https://docs.donkeycar.com/dev_guide/model/
+
+# -------------------------------------------------------------------
+# The following code was taken from the Donkey Car Github repository: 
 # https://github.com/autorope/donkeycar/blob/dev/donkeycar/parts/keras.py
+#
+# See also:
+# https://docs.donkeycar.com/dev_guide/model/
+#
+# Minor changes have been made to fit my specific input and outputs
+# -------------------------------------------------------------------
+
+# This function replicates KerasIMU create_model() method
+# It consolidates the default_imu() method with helper core_cnn_layers()
+# It has been modfied to allow specification of output layer configuration,
+# as well as to adjust the telemetry input layer to suit a wider range of
+# input sizes.
 def create_donkey_vimu(cam_input_shape, telem_input_shape, dual_outputs):
     telem_units = (telem_input_shape[0]+1) * 3 
     drop = 0.2
@@ -133,15 +152,12 @@ def create_donkey_vimu(cam_input_shape, telem_input_shape, dual_outputs):
     x = Dropout(drop)(x)
     x = Dense(50, activation='relu', name='dense_2')(x)
     x = Dropout(drop)(x)
-    # up to here, this is the standard linear model, now we add the
-    # sensor data to it
     telem_in = Input(telem_input_shape, name='telem_in')
     y = telem_in
     y = Dense(21, activation='relu', name='dense_3')(y)
     y = Dense(21, activation='relu', name='dense_4')(y)
     y = Dense(21, activation='relu', name='dense_5')(y)
     z = concatenate([x, y])
-    # here we add two more dense layers
     z = Dense(50, activation='relu', name='dense_6')(z)
     z = Dropout(drop)(z)
     z = Dense(50, activation='relu', name='dense_7')(z)
