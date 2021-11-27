@@ -4,5 +4,7 @@ models/*
 .ipynb_checkpoints
 __pycache__
 
+XX_*
+
 rough_notes.txt
 
