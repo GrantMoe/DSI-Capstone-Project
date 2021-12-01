@@ -14,7 +14,7 @@ This structure made it easy to keep track of first the manual recordings, then t
 |**throttle**|continuous||throttle input, -1.0 (brake) to 1.0 (forward throttle) |
 |**speed**|continuous||speed in meters per second|
 |**image**|string||image from simulated camera as a base-64 encoded string|
-|**hit**|category||object with which the car is in contact at the recorded instant|
+|**hit**|nominal||object with which the car is in contact at the recorded instant|
 |**time**|string||time since start of simulation in seconds|
 |**accel_x**|continuous||acceleration in the *camera* x axis in meters per seconds squared|
 |**accel_y**|continuous||acceleration in the *camera* y axis in meters per seconds squared|
