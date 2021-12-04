@@ -52,6 +52,9 @@ Figure x: A Donkey Car (left), my Donkey Car (right)
 <span id = 'methods'></span>
 ## Methodology  <!--- [^](#toc) -->
 
+![Demo lap animated gif](./assets/images/demo_lap.gif)  
+<font size="1"> *fig x*: Demo lap. Left: overhead map. Right: chase view.</font>
+
 A data was collected by manually driving a race car around a simulated track while recording video and telemetry output. Training and test sets were built from this data, which were then scaled with either a min-max scaler or a standard scaler, and used to train a neural network. The neural network used two inputs. Images were fed into several convolutional neural network (CNN) layers, then flattened. In parallel to the image CNN layers, telemetry data was input into several basic feed-forward dense layers. The output of the flattened image and telemetry data layers was then concatenated and sent through a few more dense layers, and output either in a single two-unit linear-activation dense layer, or in two parallel single-unit linear-activation dense layers.
 
 After fitting, each model was saved, as was the scaler used on the data. Both were then plugged back into the simulator client. As image and telemetry data was retrieved from the simulation server, it was converted and scaled into the same format with which the model had been trained, and used by the model to make a single prediction. The resulting steering and throttle predictions were sent back to the race server as control inputs.
@@ -91,6 +94,18 @@ Data preparation and modeling took place in a collection of Jupyter notebooks, p
 
 Each of the remaining 9 models completed at least one lap in at least two of five trials, and each completed more than one lap at least once. The average number of laps completed by the 9 successful models over all five trials is ~1.96. The average trial laps for all 12 models is ~1.67.
 
+### Track Performance
+![manual trajectory superimposed on automated trajectory](./assets/images/auto_manual_trajectories_overlaid.png)  
+<font size="1"> *fig x*: Due to the excessive throttle applied by autonomous driving models, cars were carried further both into and out of turns, resulting in trajectories that drifted closer to the track's inside walls. The cars were not able to negotiate turns at the shallow approach angles that resulted from this.</font>
+
+![manual vs autonomous trajectories, colormap: speed](./assets/images/colormaps_speed.png)  
+<font size="1"> *fig x*: In general, models carried more speed into each corner, which, coupled with shallower lines, resulted in overshooting turns and colliding with walls.</font>
+
+![manual vs autonomous trajectories, colormap: throttle](./assets/images/colormaps_throttle.png)  
+<font size="1"> *fig x*: Some of the models attempted to brake, but did not do so early enough to overcome poor trajectories and excessive speed.</font>  
+
+### Model Metrics
+
 |ID|Batch Size|Output Nodes|Scaler|Telmetry|Total Laps<sup>1</sup>|Avg Lap Time<sup>2</sup>|Avg Speed<sup>3</sup>|MSE|MAE|
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 | **131** |128|1|MinMax|activeNode, pitch, roll, speed, yaw|10.735|46.71|11.89|0.02143|0.06828
@@ -110,8 +125,6 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 <font size="1">2. Seconds, complete laps only</font>  
 <font size="1">3. Meters per second, complete laps only</font>  
 
-### Model Metrics
-
 ![bar chart: total laps per model](./assets/images/total_laps_per_model.png)  
 <font size="1"> *fig x*: This plot demonstrates the disparity in models' performance</font>
     
@@ -124,17 +137,7 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 I had hoped to compare the Keras model metrics to on-track performance, but the relative lack of data made that impossible; there simply wasn't enough information to draw conclusions. The following pairwise plot illustrates the sparsity.  
 
 ![Seaborn pairplot](./assets/images/sparse_pairwise_data.png)  
-<font size="1"> *fig x*: Pairwise plot of metrics and performance measures</font>
-
-### Track Performance
-![manual trajectory superimposed on automated trajectory](./assets/images/auto_manual_trajectories_overlaid.png)  
-<font size="1"> *fig x*: Due to the excessive throttle applied by autonomous driving models, cars were carried further both into and out of turns, resulting in trajectories that drifted closer to the track's inside walls. The cars were not able to negotiate turns at the shallow approach angles that resulted from this.</font>
-
-![manual vs autonomous trajectories, colormap: speed](./assets/images/colormaps_speed.png)  
-<font size="1"> *fig x*: In general, models carried more speed into each corner, which, coupled with shallower lines, resulted in overshooting turns and colliding with walls.</font>
-
-![manual vs autonomous trajectories, colormap: throttle](./assets/images/colormaps_throttle.png)  
-<font size="1"> *fig x*: Some of the models attempted to brake, but did not do so early enough to overcome poor trajectories and excessive speed.</font>
+<font size="1"> *fig x*: Pairwise plot of metrics and performance measures</font>  
 
 No model performed at the level required for real-world racing safety. With one exception, every lap driven by even the most successful models included at least one instance of high-speed contact with a wall. This would not be acceptable for a real car on an actual, physical track.
 
