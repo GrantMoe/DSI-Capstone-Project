@@ -22,7 +22,7 @@ In this project I attempted to train a neural network how to drive a race car ar
 1. [Experiments](#experiments)
 1. [Results](#results)
 1. [Discussion](#discussion)
-1. [Conclusions](#conclusion)
+1. [Conclusion](#conclusion)
 1. [References](#sources)
 
 <span id = 'acknowledgements'></span>
@@ -93,27 +93,36 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 
 |ID|Batch Size|Output Nodes|Scaler|Telmetry|Total Laps<sup>1</sup>|Avg Lap Time<sup>2</sup>|Avg Speed<sup>3</sup>|MSE|MAE|
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-| **131** |128|1|MinMax|activeNode, pitch, roll, speed, yaw|10.735|46.71|11.89|0.021433|0.068281
-| **141** |32|1|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|17.846|45.30|12.20|0.021409|0.068000|
-| **143** |128|1|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|6.717|44.67|12.22|0.021148|0.066184|
-| **152** |1024|2|MinMax|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|1.704|-|-|0.011346|0.069824|
-| **157** |512|2|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|10.675|46.78|11.84|0.010954|0.067489|
-| **166** |2048|1|Standard|pos_x, pos_z, speed, yaw|17.039|46.70|11.78|0.021574|0.070265|
-| **170** |128|1|MinMax|pos_x, pos_z, speed, yaw|5.846|48.25|11.60|0.021633|0.065321|
-| **171** |256|1|MinMax|pos_x, pos_z, speed, yaw|1.479|-|-|0.021911|0.068060|
-| **172** |512|1|MinMax|pos_x, pos_z, speed, yaw|5.105|45.83|12.30|0.022221|0.068652|
-| **173** |1024|1|MinMax|pos_x, pos_z, speed, yaw|0.674|-|-|0.021904|0.068440|
-| **176** |32|2|Standard|pos_x, pos_z, speed, yaw|8.644|46.79|11.74|0.011026|0.066307|
-| **178** |128|2|Standard|pos_x, pos_z, speed, yaw|22.004|43.99|12.61|0.010295|0.063061|  
+| **131** |128|1|MinMax|activeNode, pitch, roll, speed, yaw|10.735|46.71|11.89|0.02143|0.06828
+| **141** |32|1|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|17.846|45.30|12.20|0.02141|0.06800|
+| **143** |128|1|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|6.717|44.67|12.22|0.02115|0.06618|
+| **152** |1024|2|MinMax|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|1.704|-|-|0.01135|0.06982|
+| **157** |512|2|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|10.675|46.78|11.84|0.01095|0.06749|
+| **166** |2048|1|Standard|pos_x, pos_z, speed, yaw|17.039|46.70|11.78|0.02157|0.07027|
+| **170** |128|1|MinMax|pos_x, pos_z, speed, yaw|5.846|48.25|11.60|0.02163|0.06532|
+| **171** |256|1|MinMax|pos_x, pos_z, speed, yaw|1.479|-|-|0.02191|0.06806|
+| **172** |512|1|MinMax|pos_x, pos_z, speed, yaw|5.105|45.83|12.30|0.02222|0.06865|
+| **173** |1024|1|MinMax|pos_x, pos_z, speed, yaw|0.674|-|-|0.02190|0.06844|
+| **176** |32|2|Standard|pos_x, pos_z, speed, yaw|8.644|46.79|11.74|0.01103|0.06631|
+| **178** |128|2|Standard|pos_x, pos_z, speed, yaw|22.004|43.99|12.61|0.01030|0.06306|  
 
 <font size="1">1. Includes incomplete laps</font>  
 <font size="1">2. Seconds, complete laps only</font>  
 <font size="1">3. Meters per second, complete laps only</font>  
 
+![bar chart: total laps per model](./assets/images/total_laps_per_model.png)  
+<font size="1"> *fig x*: This plot demonstrates the disparity in models' performance</font>
+    
+![box plot: total laps vs scaler and outputs](./assets/images/total_laps_box_plot.png)  
+![box plot: average speed vs scaler and outputs](./assets/images/average_speed_box_plot.png)  
+<font size="1"> *fig x*: It appears that both scalers and output configurations are roughly equivalent, except for scaler type and number of laps, suggesting that a standard scaler results in "safer" driving</font>
+
 
 No model performed at the level required for real-world racing safety. With one exception, every lap driven by even the most successful models included at least one instance of high-speed contact with a wall. This would not be acceptable for a real car on an actual, physical track.
 
-I had hoped to compare the Keras model metrics to on-track performance, but the relative lack of data made that impossible; there simply wasn't enough information to draw conclusions.
+I had hoped to compare the Keras model metrics to on-track performance, but the relative lack of data made that impossible; there simply wasn't enough information to draw conclusions. The following pairwise plot illustrates the sparsity.
+![Seaborn pairplot](./assets/images/sparse_pairwise_data.png)  
+<font size="1"> *fig x*: Pairwise plot of metrics and performance measures</font>
 
 <span id = 'discussion'></span>
 ## Discussion  <!--- [^](#toc) -->
@@ -134,10 +143,10 @@ Collisions had six possible outcomes:
 
 All successful models responded to impending collisions by angling themselves to bounce off walls instead of sticking to them. Several successful models employed what could be called strategic crashing; they scrubbed speed before challenging turns by either scraping along or bouncing off of the preceding walls. The strategy works only because the simulator doesn't account for collision damage; it isn't a factor in the races being simulated.
 
-If I wished to stay true to the full-scale race team scenario, I should have chosen a different simulator. If I wanted to use the Donkey Gym simulator, I could have re-framed the project. As it was, time constraints made either course of action impossible.
+If I wished to stay true to the full-scale race team scenario, I should have chosen a different simulator. If I wanted to use the Donkey Gym simulator, I could have reframed the project. As it was, time constraints made either course of action impossible.
 
 <span id = 'conclusion'></span>
-## Conclusions  <!--- [^](#toc) -->
+## Conclusion  <!--- [^](#toc) -->
 
 The project had some negatives. By the time I recognized the error of some of my foundational choices, there wasn't enough time to start over. I also resorted to using a preexisting model, which is something I had hoped to avoid, and I ran out of time to switch back to my own. Also, my autonomous racing team would have failed.
 
