@@ -1,5 +1,5 @@
-assets/*
 data/*
+assets/video/trial_recordings
 models/*
 .ipynb_checkpoints
 __pycache__
