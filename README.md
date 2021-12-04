@@ -114,15 +114,28 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 <font size="1"> *fig x*: This plot demonstrates the disparity in models' performance</font>
     
 ![box plot: total laps vs scaler and outputs](./assets/images/total_laps_box_plot.png)  
+<font size="1"> *fig x*: Standard Scaler appears to result in models that are capable of driving further, but output configuration does not seem to make a significant difference.</font>
+
 ![box plot: average speed vs scaler and outputs](./assets/images/average_speed_box_plot.png)  
-<font size="1"> *fig x*: It appears that both scalers and output configurations are roughly equivalent, except for scaler type and number of laps, suggesting that a standard scaler results in "safer" driving</font>
+<font size="1"> *fig x*: Neither scaler type nor output configuration appears to play much of a role in average speed.</font>
+
+I had hoped to compare the Keras model metrics to on-track performance, but the relative lack of data made that impossible; there simply wasn't enough information to draw conclusions. The following pairwise plot illustrates the sparsity.  
+
+![Seaborn pairplot](./assets/images/sparse_pairwise_data.png)  
+<font size="1"> *fig x*: Pairwise plot of metrics and performance measures</font>
+
+On to the track:
+
+
+![manual vs autonomous trajectories, colormap: speed](./assets/images/colormaps_speed.png)  
+<font size="1"> *fig x*: In general, models carried more speed into each corner, which, coupled with shallower lines, resulted in overshooting turns and colliding with walls.</font>
+
+![manual vs autonomous trajectories, colormap: throttle](./assets/images/colormaps_throttle.png)  
+<font size="1"> *fig x*: Some of the models attempted to brake, but did not do so early enough to overcome poor trajectories and excessive speed.</font>
+
 
 
 No model performed at the level required for real-world racing safety. With one exception, every lap driven by even the most successful models included at least one instance of high-speed contact with a wall. This would not be acceptable for a real car on an actual, physical track.
-
-I had hoped to compare the Keras model metrics to on-track performance, but the relative lack of data made that impossible; there simply wasn't enough information to draw conclusions. The following pairwise plot illustrates the sparsity.
-![Seaborn pairplot](./assets/images/sparse_pairwise_data.png)  
-<font size="1"> *fig x*: Pairwise plot of metrics and performance measures</font>
 
 <span id = 'discussion'></span>
 ## Discussion  <!--- [^](#toc) -->
