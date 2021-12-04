@@ -91,20 +91,20 @@ Data preparation and modeling took place in a collection of Jupyter notebooks, p
 
 Each of the remaining 9 models completed at least one lap in at least two of five trials, and each completed more than one lap at least once. The average number of laps completed by the 9 successful models over all five trials is ~1.96. The average trial laps for all 12 models is ~1.67.
 
-|ID|Batch Size|Output|Scaler|Telmetry|Total Laps<sup>1</sup>|Avg Lap Time<sup>2</sup>|Avg Speed<sup>3</sup>|MSE|MAE|
+|ID|Batch Size|Output Nodes|Scaler|Telmetry|Total Laps<sup>1</sup>|Avg Lap Time<sup>2</sup>|Avg Speed<sup>3</sup>|MSE|MAE|
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-| **131** |128|combined|MinMax|activeNode, pitch, roll, speed, yaw|10.735|46.71|11.89|0.021433|0.068281
-| **141** |32|combined|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|17.846|45.30|12.20|0.021409|0.068000|
-| **143** |128|combined|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|6.717|44.67|12.22|0.021148|0.066184|
-| **152** |1024|dual|MinMax|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|1.704|-|-|0.011346|0.069824|
-| **157** |512|dual|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|10.675|46.78|11.84|0.010954|0.067489|
-| **166** |2048|combined|Standard|pos_x, pos_z, speed, yaw|17.039|46.70|11.78|0.021574|0.070265|
-| **170** |128|combined|MinMax|pos_x, pos_z, speed, yaw|5.846|48.25|11.60|0.021633|0.065321|
-| **171** |256|combined|MinMax|pos_x, pos_z, speed, yaw|1.479|-|-|0.021911|0.068060|
-| **172** |512|combined|MinMax|pos_x, pos_z, speed, yaw|5.105|45.83|12.30|0.022221|0.068652|
-| **173** |1024|combined|MinMax|pos_x, pos_z, speed, yaw|0.674|-|-|0.021904|0.068440|
-| **176** |32|dual|Standard|pos_x, pos_z, speed, yaw|8.644|46.79|11.74|0.011026|0.066307|
-| **178** |128|dual|Standard|pos_x, pos_z, speed, yaw|22.004|43.99|12.61|0.010295|0.063061|  
+| **131** |128|1|MinMax|activeNode, pitch, roll, speed, yaw|10.735|46.71|11.89|0.021433|0.068281
+| **141** |32|1|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|17.846|45.30|12.20|0.021409|0.068000|
+| **143** |128|1|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|6.717|44.67|12.22|0.021148|0.066184|
+| **152** |1024|2|MinMax|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|1.704|-|-|0.011346|0.069824|
+| **157** |512|2|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|10.675|46.78|11.84|0.010954|0.067489|
+| **166** |2048|1|Standard|pos_x, pos_z, speed, yaw|17.039|46.70|11.78|0.021574|0.070265|
+| **170** |128|1|MinMax|pos_x, pos_z, speed, yaw|5.846|48.25|11.60|0.021633|0.065321|
+| **171** |256|1|MinMax|pos_x, pos_z, speed, yaw|1.479|-|-|0.021911|0.068060|
+| **172** |512|1|MinMax|pos_x, pos_z, speed, yaw|5.105|45.83|12.30|0.022221|0.068652|
+| **173** |1024|1|MinMax|pos_x, pos_z, speed, yaw|0.674|-|-|0.021904|0.068440|
+| **176** |32|2|Standard|pos_x, pos_z, speed, yaw|8.644|46.79|11.74|0.011026|0.066307|
+| **178** |128|2|Standard|pos_x, pos_z, speed, yaw|22.004|43.99|12.61|0.010295|0.063061|  
 
 <font size="1">1. Includes incomplete laps</font>  
 <font size="1">2. Seconds, complete laps only</font>  
