@@ -91,7 +91,7 @@ Data preparation and modeling took place in a collection of Jupyter notebooks, p
 
 Each of the remaining 9 models completed at least one lap in at least two of five trials, and each completed more than one lap at least once. The average number of laps completed by the 9 successful models over all five trials is ~1.96. The average trial laps for all 12 models is ~1.67.
 
-|Model ID|Batch Size|Output Configuration|Scaler|Telmetry Data|Total Laps<sup>1</sup>|Average Lap Time<sup>2</sup>|Average Speed<sup>3</sup>|MSE|MAE|
+|Model ID|Batch Size|Output|Scaler|Telmetry|Total Laps<sup>1</sup>|Avg Lap Time<sup>2</sup>|Avg Speed<sup>3</sup>|MSE|MAE|
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 | **131** |128|combined|MinMax|activeNode, pitch, roll, speed, yaw|10.735|46.71|11.89|0.021433|0.068281
 | **141** |32|combined|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|17.846|45.30|12.20|0.021409|0.068000|
