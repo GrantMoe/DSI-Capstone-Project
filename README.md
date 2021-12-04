@@ -110,6 +110,8 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 <font size="1">2. Seconds, complete laps only</font>  
 <font size="1">3. Meters per second, complete laps only</font>  
 
+### Model Metrics
+
 ![bar chart: total laps per model](./assets/images/total_laps_per_model.png)  
 <font size="1"> *fig x*: This plot demonstrates the disparity in models' performance</font>
     
@@ -124,16 +126,15 @@ I had hoped to compare the Keras model metrics to on-track performance, but the 
 ![Seaborn pairplot](./assets/images/sparse_pairwise_data.png)  
 <font size="1"> *fig x*: Pairwise plot of metrics and performance measures</font>
 
-On to the track:
-
+### Track Performance
+![manual trajectory superimposed on automated trajectory](./assets/images/auto_manual_trajectories_overlaid.png)  
+<font size="1"> *fig x*: Due to the excessive throttle applied by autonomous driving models, cars were carried further both into and out of turns, resulting in trajectories that drifted closer to the track's inside walls. The cars were not able to negotiate turns at the shallow approach angles that resulted from this.</font>
 
 ![manual vs autonomous trajectories, colormap: speed](./assets/images/colormaps_speed.png)  
 <font size="1"> *fig x*: In general, models carried more speed into each corner, which, coupled with shallower lines, resulted in overshooting turns and colliding with walls.</font>
 
 ![manual vs autonomous trajectories, colormap: throttle](./assets/images/colormaps_throttle.png)  
 <font size="1"> *fig x*: Some of the models attempted to brake, but did not do so early enough to overcome poor trajectories and excessive speed.</font>
-
-
 
 No model performed at the level required for real-world racing safety. With one exception, every lap driven by even the most successful models included at least one instance of high-speed contact with a wall. This would not be acceptable for a real car on an actual, physical track.
 
