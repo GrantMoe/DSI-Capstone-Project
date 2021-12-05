@@ -47,7 +47,11 @@ An extensive summary of previous work in autonomous driving, which stretches bac
 
 The Donkey Car project served as a direct inspiration for my capstone. Donkey Car is an open-source software and hardware framework designed to lower the material costs and programming efforts required to experiment with autonomous driving. It provides software in the form of highly modular and extensible Python libraries, including integrated Keras neural network models. I was aware of the machine learning components of the project, and I had constructed my own Donkey Car, but I had not yet delved deeply into the code.
 
-Figure x: A Donkey Car (left), my Donkey Car (right)
+![Two Donkeys](./assets/images/two_donkeys.png)  
+<font size="1"> *fig x*: Left: a Donkey Car. Right: the author's Donkey Car.</font>
+
+
+Figure x: Left: 
 
 <span id = 'methods'></span>
 ## Methodology  <!--- [^](#toc) -->
