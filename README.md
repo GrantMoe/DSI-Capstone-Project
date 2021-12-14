@@ -48,16 +48,13 @@ An extensive summary of previous work in autonomous driving, which stretches bac
 The Donkey Car project served as a direct inspiration for my capstone. Donkey Car is an open-source software and hardware framework designed to lower the material costs and programming efforts required to experiment with autonomous driving. It provides software in the form of highly modular and extensible Python libraries, including integrated Keras neural network models. I was aware of the machine learning components of the project, and I had constructed my own Donkey Car, but I had not yet delved deeply into the code.
 
 ![Two Donkeys](./assets/images/two_donkeys.png)  
-<font size="1"> *fig x*: Left: a Donkey Car. Right: the author's Donkey Car.</font>
-
-
-Figure x: Left: 
+<sub>Figure 1: A Donkey Car (left) and the author's Donkey Car (right)</sub>
 
 <span id = 'methods'></span>
 ## Methodology  <!--- [^](#toc) -->
 
 ![Demo lap animated gif](./assets/images/demo_lap.gif)  
-<font size="1"> *fig x*: Demo lap. Left: overhead map. Right: chase view.</font>
+<sub>Figure 2: Demo lap recording, overhead map and chase view.</sub>
 
 A data was collected by manually driving a race car around a simulated track while recording video and telemetry output. Training and test sets were built from this data, which were then scaled with either a min-max scaler or a standard scaler, and used to train a neural network. The neural network used two inputs. Images were fed into several convolutional neural network (CNN) layers, then flattened. In parallel to the image CNN layers, telemetry data was input into several basic feed-forward dense layers. The output of the flattened image and telemetry data layers was then concatenated and sent through a few more dense layers, and output either in a single two-unit linear-activation dense layer, or in two parallel single-unit linear-activation dense layers.
 
@@ -70,7 +67,7 @@ Many models were tried, each with different hyperparameters (including number of
 ### Data Description
 Three candidate datasets were collected, each with a different simulated camera resolution. The default 120x160 pixel image format was tried, but proved to be too computationally intensive for my computer. Several laps were then tried with 32x32 images, but the models produced with this data were not capable of the performance I desired. I settled on a 64x64 format and proceeded to drive for 150 laps. This process took over two hours, and resulted in 125,400 records. I pruned data based on the time taken to drive each lap; cutting laps that took more than 43 seconds nicely eliminated all outliers, and it resulted in a set of 115,052 records. 
 
-figure: pre-cut, post-cut
+<!--- figure: pre-cut, post-cut -->
 
 ### Metrics
 Mean squared error was used as the loss function with which to fit the models. Mean average error and root mean squared error were also collected for purposes of comparison.
@@ -79,7 +76,7 @@ Track performance was measured in number of laps completed, along with best and 
 
 ### Adopted Technology
 
-figure: donkey gym screen. map gif?
+<!-- figure: donkey gym screen. map gif? -->
 
 All data collection and trials took place in the Donkey Gym simulated environment,<sup id = 't_9'>[[9]](#n_9)</sup> which is a wrapper for the OpenAI Gym environment.<sup id = 't_10'>[[10]](#n_10)</sup> A custom Python program was written to send commands to a locally-hosted Donkey Gym server, and to receive and record images and telemetry from the same.
 
@@ -100,13 +97,13 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 
 ### Track Performance
 ![manual trajectory superimposed on automated trajectory](./assets/images/auto_manual_trajectories_overlaid.png)  
-<font size="1"> *fig x*: Due to the excessive throttle applied by autonomous driving models, cars were carried further both into and out of turns, resulting in trajectories that drifted closer to the track's inside walls. The cars were not able to negotiate turns at the shallow approach angles that resulted from this.</font>
+<sub> Figure 3: Due to the excessive throttle applied by autonomous driving models, cars were carried further both into and out of turns, resulting in trajectories that drifted closer to the track's inside walls. The cars were not able to negotiate turns at the shallow approach angles that resulted from this.</sub>
 
 ![manual vs autonomous trajectories, colormap: speed](./assets/images/colormaps_speed.png)  
-<font size="1"> *fig x*: In general, models carried more speed into each corner, which, coupled with shallower lines, resulted in overshooting turns and colliding with walls.</font>
+<sub> Figure 4: In general, models carried more speed into each corner, which, coupled with shallower lines, resulted in overshooting turns and colliding with walls.</sub>
 
 ![manual vs autonomous trajectories, colormap: throttle](./assets/images/colormaps_throttle.png)  
-<font size="1"> *fig x*: Some of the models attempted to brake, but did not do so early enough to overcome poor trajectories and excessive speed.</font>  
+<sub> Figure 5: Some of the models attempted to brake, but did not do so early enough to overcome poor trajectories and excessive speed.</sub>  
 
 ### Model Metrics
 
@@ -130,18 +127,18 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 <font size="1">3. Meters per second, complete laps only</font>  
 
 ![bar chart: total laps per model](./assets/images/total_laps_per_model.png)  
-<font size="1"> *fig x*: This plot demonstrates the disparity in models' performance</font>
+<sub> Figure 6: This plot demonstrates the disparity in models' performance</sub>
     
 ![box plot: total laps vs scaler and outputs](./assets/images/total_laps_box_plot.png)  
-<font size="1"> *fig x*: Standard Scaler appears to result in models that are capable of driving further, but output configuration does not seem to make a significant difference.</font>
+<sub> Figure 7: Standard Scaler appears to result in models that are capable of driving further, but output configuration does not seem to make a significant difference.</sub>
 
 ![box plot: average speed vs scaler and outputs](./assets/images/average_speed_box_plot.png)  
-<font size="1"> *fig x*: Neither scaler type nor output configuration appears to play much of a role in average speed.</font>
+<sub> Figure 8: Neither scaler type nor output configuration appears to play much of a role in average speed.</sub>
 
 I had hoped to compare the Keras model metrics to on-track performance, but the relative lack of data made that impossible; there simply wasn't enough information to draw conclusions. The following pairwise plot illustrates the sparsity.  
 
 ![Seaborn pairplot](./assets/images/sparse_pairwise_data.png)  
-<font size="1"> *fig x*: Pairwise plot of metrics and performance measures</font>  
+<sub> Figure 9: Pairwise plot of metrics and performance measures</sub>  
 
 No model performed at the level required for real-world racing safety. With one exception, every lap driven by even the most successful models included at least one instance of high-speed contact with a wall. This would not be acceptable for a real car on an actual, physical track.
 
@@ -174,8 +171,6 @@ The project had some negatives. By the time I recognized the error of some of my
 On the other hand, I cannot overstate how much I enjoyed delving into how my models performed. Emergent behavior of embodied intelligent agents is part of what drew me to machine learning in the first place; I had once aspired to a graduate degree in cognitive robotics, and it remains a major interest of mine.
 
 Working on this project has left me in possession of a highly automated machine learning pipeline, and now that I am free of my imaginary full-scale racing team, I can employ it while using Donkey Gym as it was designed to be used. I intend to use the simulated Circuit Launch track to prepare for in-person competition on its real-world counterpart in Oakland.
-
-This was good. It's a start.
 
 <span id = 'sources'></span>
 ## References  <!--- [^](#toc) -->
