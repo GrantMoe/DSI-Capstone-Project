@@ -28,11 +28,11 @@ In this project I attempted to train a neural network how to drive a race car ar
 <span id = 'acknowledgements'></span>
 ## Acknowledgements <!--- [^](#toc) -->
 
-* GA Crew (Joseph Hicks, Noah Christiensen, Patrick Wales-Dinian) -  vital project feedback and guidance 
-* Tawn Kramer - creating the Donkey Gym environment
-* Maxime Ellerbach et al. - maintaining and expanding Donkey Gym
-* Braden Andersen - autonomous driving capstone experience/advice
-* Thomaz Moon - shared example of what a good project looks like
+* GA Crew ([Joseph Hicks](https://www.linkedin.com/in/joseph-w-hicks/), [Noah Christiensen](https://www.linkedin.com/in/noah-christiansen/), [Patrick Wales-Dinian](https://www.patrickwalesdinan.com/)) -  vital project feedback and guidance 
+* [Tawn Kramer](https://www.linkedin.com/in/tawn-kramer-7291271/) - creating the Donkey Gym environment
+* [Maxime Ellerbach et al.](https://github.com/tawnkramer/gym-donkeycar/graphs/contributors) - maintaining and expanding Donkey Gym
+* [Braden Andersen](https://www.linkedin.com/in/braden-d-anderson/) - autonomous driving capstone experience/advice
+* [Thomaz Moon](https://www.linkedin.com/in/thomazmoon/) - shared example of what a good project looks like
 
 <span id = 'intro'></span>
 ## Introduction <!--- [^](#toc) -->
