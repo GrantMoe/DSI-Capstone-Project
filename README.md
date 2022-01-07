@@ -37,13 +37,13 @@ In this project I attempted to train a neural network how to drive a race car ar
 <span id = 'intro'></span>
 ## Introduction <!--- [^](#toc) -->
 
-Autonomous automotive racing competitions range from amateurs and students with modified radio control cars<sup id = 't_1'>[[1]](#n_1)</sup><sup id = 't_2'>[[2]](#n_2)</sup> to university teams with mid-to-full scale race cars<sup id = 't_3'>[[3]](#n_3)</sup><sup id = 't_4'>[[4]](#n_4)</sup> to massively sponsored government and commercial competitions.<sup id = 't_5'>[[5]](#n_5)</sup> The DARPA Grand Challenge<sup id = 't_6'>[[6]](#n_6)</sup> ignited my interest in autonomous racing, and the desire to learn the inner workings of autonomy is part of what motivated me to enroll in the data science immersive course in the first place.
+Autonomous automotive racing competitions range from amateurs and students with modified radio control cars<sup id = 't_1'>[1](#n_1)</sup><sup id = 't_2'>[2](#n_2)</sup> to university teams with mid-to-full scale race cars<sup id = 't_3'>[3](#n_3)</sup><sup id = 't_4'>[4](#n_4)</sup> to massively sponsored government and commercial competitions.<sup id = 't_5'>[5](#n_5)</sup> The DARPA Grand Challenge<sup id = 't_6'>[6](#n_6)</sup> ignited my interest in autonomous racing, and the desire to learn the inner workings of autonomy is part of what motivated me to enroll in the data science immersive course in the first place.
 
 For this project's hypothetical framework, I have cast myself as a member of a nascent self-driving race team. I have given myself the task of leveraging my machine learning experience to lay the groundwork for my team's autonomous control software.
 
 <span id = 'related'></span>
 ## Related Work  <!--- [^](#toc) -->
-An extensive summary of previous work in autonomous driving, which stretches back nearly a century,<sup id = 't_7'>[[7]](#n_7)</sup> will not be attempted here. Instead, I will cover the most relevant single source, Donkey Car.<sup id = 't_8'>[[8]](#n_8)</sup>
+An extensive summary of previous work in autonomous driving, which stretches back nearly a century,<sup id = 't_7'>[7](#n_7)</sup> will not be attempted here. Instead, I will cover the most relevant single source, Donkey Car.<sup id = 't_8'>[8](#n_8)</sup>
 
 The Donkey Car project served as a direct inspiration for my capstone. Donkey Car is an open-source software and hardware framework designed to lower the material costs and programming efforts required to experiment with autonomous driving. It provides software in the form of highly modular and extensible Python libraries, including integrated Keras neural network models. I was aware of the machine learning components of the project, and I had constructed my own Donkey Car, but I had not yet delved deeply into the code.
 
@@ -78,7 +78,7 @@ Track performance was measured in number of laps completed, along with best and 
 
 <!-- figure: donkey gym screen. map gif? -->
 
-All data collection and trials took place in the Donkey Gym simulated environment,<sup id = 't_9'>[[9]](#n_9)</sup> which is a wrapper for the OpenAI Gym environment.<sup id = 't_10'>[[10]](#n_10)</sup> A custom Python program was written to send commands to a locally-hosted Donkey Gym server, and to receive and record images and telemetry from the same.
+All data collection and trials took place in the Donkey Gym simulated environment,<sup id = 't_9'>[9](#n_9)</sup> which is a wrapper for the OpenAI Gym environment.<sup id = 't_10'>[10](#n_10)</sup> A custom Python program was written to send commands to a locally-hosted Donkey Gym server, and to receive and record images and telemetry from the same.
 
 Data preparation and modeling took place in a collection of Jupyter notebooks, primarily using Pandas, scikit-learn and Keras Python libraries.
 
