@@ -107,7 +107,7 @@ Each of the remaining 9 models completed at least one lap in at least two of fiv
 
 ### Model Metrics
 
-|ID|Batch Size|Output Nodes|Scaler|Telmetry|Total Laps<sup>1</sup>|Avg Lap Time<sup>2</sup>|Avg Speed<sup>3</sup>|MSE|MAE|
+|ID|Batch Size|Output Nodes|Scaler|Telemetry|Total Laps<sup>1</sup>|Avg Lap Time<sup>2</sup>|Avg Speed<sup>3</sup>|MSE|MAE|
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 | **131** |128|1|MinMax|activeNode, pitch, roll, speed, yaw|10.735|46.71|11.89|0.02143|0.06828
 | **141** |32|1|Standard|activeNode, pitch, pos_x, pos_z, roll, speed, yaw|17.846|45.30|12.20|0.02141|0.06800|
